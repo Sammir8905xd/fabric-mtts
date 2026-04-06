@@ -10,8 +10,14 @@ base {
 	archivesName = project.archives_base_name
 }
 
+repositories {
+	// Añadimos los repositorios necesarios para que encuentre las librerías
+	maven { url = "https://maven.fabricmc.net/" }
+	mavenCentral()
+}
+
 loom {
-	// Aquí es donde se definen los mappings en versiones nuevas
+	// Configuración estándar para 1.20.4
 	runs {
 		client {
 			client()
@@ -29,11 +35,11 @@ loom {
 }
 
 dependencies {
-	// Minecraft y Mappings (Configuración correcta para Loom)
+	// Minecraft y Mappings
 	minecraft "com.mojang:minecraft:1.20.4"
 	mappings "net.fabricmc:yarn:1.20.4+build.3:v2"
 	
-	// Loader y API
+	// Loader y API obligatorios para el comando /mtts
 	modImplementation "net.fabricmc:fabric-loader:0.18.6"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:0.97.0+1.20.4"
 }
