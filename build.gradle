@@ -4,14 +4,14 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath "net.fabricmc:fabric-loom:1.5-SNAPSHOT"
+		// Usamos la 1.6-SNAPSHOT que es más estable para 1.20.4
+		classpath "net.fabricmc:fabric-loom:1.6-SNAPSHOT"
 	}
 }
 
-plugins {
-	id 'net.fabricmc.fabric-loom'
-	id 'maven-publish'
-}
+// Reemplazamos el bloque 'plugins {}' por 'apply plugin'
+apply plugin: 'fabric-loom'
+apply plugin: 'maven-publish'
 
 version = project.mod_version
 group = project.maven_group
@@ -26,7 +26,6 @@ repositories {
 }
 
 loom {
-	// Configuración estándar para 1.20.4
 	runs {
 		client {
 			client()
@@ -44,11 +43,9 @@ loom {
 }
 
 dependencies {
-	// Minecraft y Mappings
 	minecraft "com.mojang:minecraft:1.20.4"
 	mappings "net.fabricmc:yarn:1.20.4+build.3:v2"
 	
-	// Loader y API obligatorios para el comando /mtts
 	modImplementation "net.fabricmc:fabric-loader:0.18.6"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:0.97.0+1.20.4"
 }
